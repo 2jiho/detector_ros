@@ -25,8 +25,8 @@ class ObjectBboxNode(Node):
         self.declare_parameter("max_det", 300)
 
         self.declare_parameter("image_topic", "image_raw")
-        self.declare_parameter("bbox_result_topic", "bbox/result")
-        self.declare_parameter("bbox_image_topic", "bbox/image")
+        self.declare_parameter("bbox_result_topic", "image_raw/bbox/result")
+        self.declare_parameter("bbox_image_topic", "image_raw/bbox/image")
 
         self.show_bbox_image = (
             self.get_parameter("show_bbox_image").get_parameter_value().bool_value
@@ -47,9 +47,6 @@ class ObjectBboxNode(Node):
         bbox_image_topic = (
             self.get_parameter("bbox_image_topic").get_parameter_value().string_value
         )
-
-        bbox_result_topic = f"{image_topic}/{bbox_result_topic}"
-        bbox_image_topic = f"{image_topic}/{bbox_image_topic}"
 
         self.sub_image = self.create_subscription(Image, image_topic, self.sub_cb, 1)
         self.pub_timer = self.create_timer(1 / dps, self.pub_cb)
