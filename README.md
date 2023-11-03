@@ -1,5 +1,5 @@
 # detector_ros
-Object Detector for ROS2
+Object Detector (ultralytics) for ROS2
 # Parameters:
 - `show_bbox_image`: Show the image with bounding boxes (default: `True`)
 - `dps`: Detections per second (default: `15`)
